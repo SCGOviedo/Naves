@@ -91,14 +91,8 @@ void GameLayer::update() {
 	// Colisiones
 	for (auto const& enemy : enemies) {
 		if (player->isOverlap(enemy)) {
-			if (player->inmune == 0){
-				player->vidas--;
-				player->inmune = 100;
-			}
-			if (player->vidas == 0) {
 				init();
 				return; // Cortar el for
-			}
 		}
 	}
 
