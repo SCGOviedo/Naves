@@ -2,6 +2,7 @@
 
 Enemy::Enemy(float x, float y, Game* game)
 	: Actor("res/enemigo.png", x, y, 36, 40, game) {
+	audioShoot = new Audio("res/efecto_disparo.wav", false);
 
 	aMoving = new Animation("res/enemigo_movimiento.png", width, height,
 		108, 40, 6, 3, game);
@@ -17,9 +18,24 @@ void Enemy::update() {
 	vx = -1;
 	x = x + vx;
 
+	if (shootTime > 0) {
+		shootTime--;
+	}
 }
 
 void Enemy::draw() {
 	animation->draw(x, y);
 }
 
+Projectile* Enemy::shoot() {
+
+	if (shootTime == 0) {
+		audioShoot->play();
+		shootTime = shootCadence;
+		return  new Projectile(x, y, game, Tipe::Enemy);
+		
+	}
+	else {
+		return NULL;
+	}
+}
