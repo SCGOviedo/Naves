@@ -10,6 +10,7 @@
 #include "Audio.h" 
 #include <list>
 
+using namespace std;
 class GameLayer : public Layer
 {
 public:
@@ -22,11 +23,13 @@ public:
 
 	Audio* audioBackground;
 	Text* textPoints;
+	Text* textLives;
 	int points;
 	int newEnemyTime = 0;
 	Player* player;
 	Background* background;
 	Actor* backgroundPoints;
+	Actor* backgroundLives;
 	list<Enemy*> enemies;
 	list<Projectile*> projectiles;
 
