@@ -21,6 +21,7 @@ void GameLayer::init() {
 
 	enemies.clear(); // Vaciar por si reiniciamos el juego
 	projectiles.clear(); // Vaciar por si reiniciamos el juego
+	monedas.clear(); // Vaciar por si reiniciamos el juego
 
 	enemies.push_back(new Enemy(300, 50, game));
 	enemies.push_back(new Enemy(300, 200, game));
@@ -78,24 +79,40 @@ void GameLayer::update() {
 	for (auto const& projectile : projectiles) {
 		projectile->update();
 	}
-
+	for (auto const& moneda : monedas) {
+		moneda->update();
+	}
 	// Generar enemigos
 	newEnemyTime--;
 	if (newEnemyTime <= 0) {
 		int rX = (rand() % (600 - 500)) + 1 + 500;
 		int rY = (rand() % (300 - 60)) + 1 + 60;
 		enemies.push_back(new Enemy(rX, rY, game));
+		rX = (rand() % (600 - 500)) + 1 + 500;
+		rY = (rand() % (300 - 60)) + 1 + 60;
+		monedas.push_back(new Coin(rX, rY, game));
 		newEnemyTime = 110;
 	}
 
 	// Colisiones
 	for (auto const& enemy : enemies) {
 		if (player->isOverlap(enemy)) {
-				init();
-				return; // Cortar el for
+			init();
+			return; // Cortar el for
 		}
 	}
-
+	bool colision = false;
+	Coin* moneda;
+	for (auto const& coin : monedas) {
+		if (player->isOverlap(coin)) {
+			moneda = coin;
+			colision = true;
+			points++;
+			textPoints->content = to_string(points);
+		}
+	}
+	if (colision)
+		monedas.remove(moneda);
 	// Colisiones , Enemy - Projectile
 
 	list<Enemy*> deleteEnemies;
@@ -160,7 +177,9 @@ void GameLayer::draw() {
 	for (auto const& projectile : projectiles) {
 		projectile->draw();
 	}
-
+	for (auto const& moneda : monedas) {
+		moneda->draw();
+	}
 	player->draw();
 	for (auto const& enemy : enemies) {
 		enemy->draw();
