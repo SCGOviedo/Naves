@@ -11,4 +11,5 @@ public:
 	void update();
 	Animation* aMoving;
 	Animation* animation; // Referencia a la animación mostrada
+	int vida = 3;
 };
