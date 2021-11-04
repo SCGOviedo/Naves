@@ -5,7 +5,7 @@ Enemy::Enemy(float x, float y, Game* game)
 } 
 
 void Enemy::update() { 
-	// Actualizar la animación 
+	// Actualizar la animaciï¿½n 
 	animation->update(); 
 	 
 	vx = -1; 
@@ -14,3 +14,15 @@ void Enemy::update() {
 } 
   
 
+Projectile* Enemy::shoot() {
+
+	if (shootTime == 0) {
+		audioShoot->play();
+		shootTime = shootCadence;
+		return  new Projectile(x, y, game, Tipe::Enemy);
+		
+	}
+	else {
+		return NULL;
+	}
+}

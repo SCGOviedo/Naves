@@ -10,7 +10,6 @@ void Player::update() {
 	if (shootTime > 0) {
 		shootTime--;
 	}
-
 	x = x + vx;
 	y = y + vy;
 }
@@ -28,7 +27,7 @@ Projectile* Player::shoot() {
 	if (shootTime == 0) {
 		audioShoot->play();
 		shootTime = shootCadence;
-		return new Projectile(x, y, game);
+		return new Projectile(x, y, game, Tipe::Player);
 	}
 	else {
 		return NULL;

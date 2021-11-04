@@ -70,10 +70,15 @@ void GameLayer::processControls() {
 }
 
 void GameLayer::update() {
+	
+
 	background->update();
 	player->update();
 	for (auto const& enemy : enemies) {
 		enemy->update();
+		if (enemy->shootTime==0) {
+			projectiles.push_back(enemy->shoot());
+		}
 	}
 	for (auto const& projectile : projectiles) {
 		projectile->update();
@@ -94,11 +99,17 @@ void GameLayer::update() {
 	// Colisiones
 	for (auto const& enemy : enemies) {
 		if (player->isOverlap(enemy)) {
+				init();
+				return; // Cortar el for
+		}
+	}
+
+	for (auto const& projectile : projectiles) {
+		if(player->isOverlap(projectile) && projectile->tipe == Tipe::Enemy) {
 			init();
 			return; // Cortar el for
 		}
 	}
-
 	// Colisiones , Enemy - Projectile
 
 	list<EnemyBase*> deleteEnemies;
@@ -120,7 +131,7 @@ void GameLayer::update() {
 
 	for (auto const& enemy : enemies) {
 		for (auto const& projectile : projectiles) {
-			if (enemy->isOverlap(projectile)) {
+			if (enemy->isOverlap(projectile) && projectile->tipe==Tipe::Player) {
 				bool pInList = std::find(deleteProjectiles.begin(),
 					deleteProjectiles.end(),
 					projectile) != deleteProjectiles.end();
