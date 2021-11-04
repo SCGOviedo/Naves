@@ -1,7 +1,7 @@
 #pragma once 
 
 #include "EnemyBase.h" 
-#include "Animation.h"  
+#include "Animation.h"
 
 class Enemy : public EnemyBase 
 { 
