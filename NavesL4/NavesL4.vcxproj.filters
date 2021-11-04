@@ -25,6 +25,12 @@
     <Filter Include="Archivos de origen\actores">
       <UniqueIdentifier>{d72f9674-6a1c-47ec-9ac3-e65b9c20e91d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\actores\Enemies">
+      <UniqueIdentifier>{9b4c3ebc-fb6a-4ec6-a8eb-b55fb3514c52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\actores\Enemies">
+      <UniqueIdentifier>{3536bdbc-afc6-4f09-ab19-be2abf008443}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -48,9 +54,6 @@
     <ClCompile Include="Background.cpp">
       <Filter>Archivos de origen\actores</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Archivos de origen\actores</Filter>
-    </ClCompile>
     <ClCompile Include="Projectile.cpp">
       <Filter>Archivos de origen\actores</Filter>
     </ClCompile>
@@ -65,6 +68,14 @@
     </ClCompile>
     <ClCompile Include="Coin.cpp">
       <Filter>Archivos de origen\actores</Filter>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Archivos de origen\actores\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBase.cpp">
+      <Filter>Archivos de origen\actores\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyNuevo.cpp">
+      <Filter>Archivos de origen\actores\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -86,9 +97,6 @@
     <ClInclude Include="Background.h">
       <Filter>Archivos de encabezado\actores</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Archivos de encabezado\actores</Filter>
-    </ClInclude>
     <ClInclude Include="Projectile.h">
       <Filter>Archivos de encabezado\actores</Filter>
     </ClInclude>
@@ -100,9 +108,5 @@
     </ClInclude>
     <ClInclude Include="Audio.h">
       <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Coin.h">
-      <Filter>Archivos de encabezado\actores</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

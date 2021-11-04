@@ -19,12 +19,17 @@ void GameLayer::init() {
 	backgroundPoints = new Actor("res/icono_puntos.png",
 		WIDTH * 0.85, HEIGHT * 0.05, 24, 24, game);
 
+	backgroundLives =new Actor("res/corazon.png",
+			WIDTH * 0.05, HEIGHT * 0.05, 44, 36, game);
+	textLives = new Text("3", WIDTH * 0.15, HEIGHT * 0.04, game);
+	textLives->content = to_string(player->vidas);
+
 	enemies.clear(); // Vaciar por si reiniciamos el juego
 	projectiles.clear(); // Vaciar por si reiniciamos el juego
 	monedas.clear(); // Vaciar por si reiniciamos el juego
 
 	enemies.push_back(new Enemy(300, 50, game));
-	enemies.push_back(new Enemy(300, 200, game));
+	enemies.push_back(new EnemyNuevo(300, 200, game));
 }
 
 void GameLayer::processControls() {
@@ -71,6 +76,8 @@ void GameLayer::processControls() {
 }
 
 void GameLayer::update() {
+	
+
 	background->update();
 	player->update();
 	for (auto const& enemy : enemies) {
@@ -91,31 +98,52 @@ void GameLayer::update() {
 		rX = (rand() % (600 - 500)) + 1 + 500;
 		rY = (rand() % (300 - 60)) + 1 + 60;
 		monedas.push_back(new Coin(rX, rY, game));
+		enemies.push_back(new EnemyNuevo(rX, rY, game));
 		newEnemyTime = 110;
 	}
 
 	// Colisiones
+	bool colision = false;
+	EnemyBase* enemigoMuerto;
 	for (auto const& enemy : enemies) {
 		if (player->isOverlap(enemy)) {
-			init();
-			return; // Cortar el for
+			if (player->inmune == 0){
+				colision = true;
+				enemigoMuerto = enemy;
+				player->vidas--;
+				player->inmune = 50;
+				textLives->content = to_string(player->vidas);
+			}
+			if (player->vidas == 0) {
+				init();
+				return; // Cortar el for
+			}
 		}
 	}
-	bool colision = false;
+	if(colision)
+		enemies.remove(enemigoMuerto);//eliminamos el enemigo
+  
+bool colisionMoneda = false;
 	Coin* moneda;
 	for (auto const& coin : monedas) {
 		if (player->isOverlap(coin)) {
 			moneda = coin;
-			colision = true;
+			colisionMoneda = true;
 			points++;
 			textPoints->content = to_string(points);
 		}
 	}
-	if (colision)
+	if (colisionMoneda)
 		monedas.remove(moneda);
+	for (auto const& projectile : projectiles) {
+		if(player->isOverlap(projectile) && projectile->tipe == Tipe::Enemy) {
+			init();
+			return; // Cortar el for
+		}
+	}
 	// Colisiones , Enemy - Projectile
 
-	list<Enemy*> deleteEnemies;
+	list<EnemyBase*> deleteEnemies;
 	list<Projectile*> deleteProjectiles;
 	for (auto const& projectile : projectiles) {
 		if (projectile->isInRender() == false) {
@@ -134,7 +162,7 @@ void GameLayer::update() {
 
 	for (auto const& enemy : enemies) {
 		for (auto const& projectile : projectiles) {
-			if (enemy->isOverlap(projectile)) {
+			if (enemy->isOverlap(projectile) && projectile->tipe==Tipe::Player) {
 				bool pInList = std::find(deleteProjectiles.begin(),
 					deleteProjectiles.end(),
 					projectile) != deleteProjectiles.end();
@@ -143,7 +171,7 @@ void GameLayer::update() {
 					deleteProjectiles.push_back(projectile);
 				}
 
-				bool eInList = std::find(deleteEnemies.begin(),
+				bool eInList = std::find(deleteEnemies.begin(), 
 					deleteEnemies.end(),
 					enemy) != deleteEnemies.end();
 
@@ -186,10 +214,11 @@ void GameLayer::draw() {
 	}
 
 	backgroundPoints->draw();
+	backgroundLives->draw();
 	textPoints->draw();
+	textLives->draw();
 	SDL_RenderPresent(game->renderer); // Renderiza
 }
-
 void GameLayer::keysToControls(SDL_Event event) {
 	if (event.type == SDL_KEYDOWN) {
 		int code = event.key.keysym.sym;

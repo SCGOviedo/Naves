@@ -6,11 +6,14 @@
 #include "Coin.h"
 
 #include "Enemy.h"
+#include "EnemyBase.h"
+#include "EnemyNuevo.h"
 #include "Projectile.h"
 #include "Text.h"
 #include "Audio.h" 
 #include <list>
 
+using namespace std;
 class GameLayer : public Layer
 {
 public:
@@ -23,12 +26,14 @@ public:
 
 	Audio* audioBackground;
 	Text* textPoints;
+	Text* textLives;
 	int points;
 	int newEnemyTime = 0;
 	Player* player;
 	Background* background;
 	Actor* backgroundPoints;
-	list<Enemy*> enemies;
+	Actor* backgroundLives;
+	list<EnemyBase*> enemies;
 	list<Projectile*> projectiles;
 	list<Coin*> monedas;
 
