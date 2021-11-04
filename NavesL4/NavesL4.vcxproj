@@ -164,6 +164,8 @@
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyBase.cpp" />
+    <ClCompile Include="EnemyNuevo.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameLayer.cpp" />
     <ClCompile Include="Layer.cpp" />
@@ -178,6 +180,8 @@
     <ClInclude Include="Audio.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyBase.h" />
+    <ClInclude Include="EnemyNuevo.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameLayer.h" />
     <ClInclude Include="Layer.h" />

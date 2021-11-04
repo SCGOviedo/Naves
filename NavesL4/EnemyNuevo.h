@@ -3,9 +3,9 @@
 #include "EnemyBase.h"
 #include "Animation.h" 
 
-class Enemy : public EnemyBase
+class EnemyNuevo : public EnemyBase
 {
 public:
-	Enemy(float x, float y, Game* game);
+	EnemyNuevo(float x, float y, Game* game);
 	void update() override;
 };
