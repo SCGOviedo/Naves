@@ -10,5 +10,8 @@ void Enemy::update() {
 	 
 	vx = -1; 
 	x = x + vx; 
-	 
+
+	if (shootTime > 0) {
+		shootTime--;
+	}
 } 

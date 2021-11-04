@@ -17,7 +17,10 @@ void EnemyNuevo::update() {
 
 	if (y < 20 || y>300) 
 		vy *= -1;
-	
+
+	if (shootTime > 0) {
+		shootTime--;
+	}
 }
 
 

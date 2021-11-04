@@ -3,6 +3,8 @@
 #include "Actor.h" 
 #include "Animation.h"  
 
+#include "Projectile.h" 
+#include "Audio.h"
 class EnemyBase : public Actor 
 {
 public:
@@ -13,5 +15,10 @@ public:
 	 
 	virtual void update(); 
 	int vida = 3;
+
+	Projectile* shoot();
+	Audio* audioShoot;
+	int shootCadence = 90;
+	int shootTime = 0;
 }; 
  
