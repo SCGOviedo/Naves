@@ -27,7 +27,7 @@ Projectile* Player::shoot() {
 	if (shootTime == 0) {
 		audioShoot->play();
 		shootTime = shootCadence;
-		return new Projectile(x, y, game);
+		return new Projectile(x, y, game, Tipe::Player);
 	}
 	else {
 		return NULL;
