@@ -76,9 +76,6 @@ void GameLayer::update() {
 	player->update();
 	for (auto const& enemy : enemies) {
 		enemy->update();
-		if (enemy->shootTime==0) {
-			projectiles.push_back(enemy->shoot());
-		}
 	}
 	for (auto const& projectile : projectiles) {
 		projectile->update();

@@ -12,17 +12,3 @@ void Enemy::update() {
 	x = x + vx; 
 	 
 } 
-  
-
-Projectile* Enemy::shoot() {
-
-	if (shootTime == 0) {
-		audioShoot->play();
-		shootTime = shootCadence;
-		return  new Projectile(x, y, game, Tipe::Enemy);
-		
-	}
-	else {
-		return NULL;
-	}
-}
