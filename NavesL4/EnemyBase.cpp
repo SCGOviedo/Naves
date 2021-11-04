@@ -8,6 +8,8 @@ EnemyBase::EnemyBase(string quieto, string movimiento, float x, float y, Game* g
 	animation = aMoving; 
 	 
 	vx = 1; 
+	audioShoot = new Audio("res/efecto_disparo.wav", false);
+
 } 
 void EnemyBase::draw() { 
 	animation->draw(x, y); 
@@ -16,4 +18,16 @@ void EnemyBase::draw() {
 void EnemyBase::update() 
 { 
 } 
- 
+
+Projectile* EnemyBase::shoot() {
+
+	if (shootTime == 0) {
+		audioShoot->play();
+		shootTime = shootCadence;
+		return  new Projectile(x, y, game, Tipe::Enemy);
+
+	}
+	else {
+		return NULL;
+	}
+}

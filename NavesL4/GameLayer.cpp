@@ -82,6 +82,10 @@ void GameLayer::update() {
 	player->update();
 	for (auto const& enemy : enemies) {
 		enemy->update();
+		if (enemy->shootTime == 0) {
+			projectiles.push_back(enemy->shoot());
+		}
+
 	}
 	for (auto const& projectile : projectiles) {
 		projectile->update();
@@ -122,7 +126,27 @@ void GameLayer::update() {
 	}
 	if(colision)
 		enemies.remove(enemigoMuerto);//eliminamos el enemigo
-  
+
+	colision = false;
+	Projectile* projectileDado;
+	for (auto const& projectile : projectiles) {
+		if (player->isOverlap(projectile) && projectile->tipe == Tipe::Enemy) {
+			if (player->inmune == 0) {
+			colision = true;
+			player->vidas--;
+			player->inmune = 50;
+			textLives->content = to_string(player->vidas);
+			projectileDado = projectile;
+			}
+		}
+		if (player->vidas == 0) {
+			init();
+			return; // Cortar el for
+		}
+	}
+	if (colision)
+		projectiles.remove(projectileDado);//eliminamos el enemigo
+
 bool colisionMoneda = false;
 	Coin* moneda;
 	for (auto const& coin : monedas) {
