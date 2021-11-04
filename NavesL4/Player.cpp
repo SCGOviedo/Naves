@@ -10,6 +10,9 @@ void Player::update() {
 	if (shootTime > 0) {
 		shootTime--;
 	}
+	if (inmune > 0) {
+		inmune--;
+	}
 	x = x + vx;
 	y = y + vy;
 }

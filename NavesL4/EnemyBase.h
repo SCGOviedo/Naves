@@ -12,5 +12,6 @@ public:
 	Animation* animation; // Referencia a la animación mostrada 
 	 
 	virtual void update(); 
+	int vida = 3;
 }; 
  
