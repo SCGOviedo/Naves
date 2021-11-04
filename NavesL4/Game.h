@@ -32,3 +32,8 @@ public:
 	bool loopActive; // Juego activo
 	Layer* gameLayer;
 };
+
+enum class Tipe {
+	Player, 
+	Enemy
+};

@@ -5,6 +5,8 @@
 #include "Background.h"
 
 #include "Enemy.h"
+#include "EnemyBase.h"
+#include "EnemyNuevo.h"
 #include "Projectile.h"
 #include "Text.h"
 #include "Audio.h" 
@@ -30,7 +32,7 @@ public:
 	Background* background;
 	Actor* backgroundPoints;
 	Actor* backgroundLives;
-	list<Enemy*> enemies;
+	list<EnemyBase*> enemies;
 	list<Projectile*> projectiles;
 
 	bool controlShoot = false;

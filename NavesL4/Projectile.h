@@ -6,7 +6,8 @@
 class Projectile : public Actor
 {
 public:
-	Projectile(float x, float y, Game* game);
+	Projectile(float x, float y, Game* game, Tipe tipe);
 	void update();
+	Tipe tipe = Tipe::Player;
 };
 

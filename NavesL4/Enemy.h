@@ -1,14 +1,11 @@
-#pragma once
+#pragma once 
 
-#include "Actor.h"
-#include "Animation.h" 
+#include "EnemyBase.h" 
+#include "Animation.h"  
 
-class Enemy : public Actor
-{
-public:
-	Enemy(float x, float y, Game* game);
-	void draw() override; // Va a sobrescribir
-	void update();
-	Animation* aMoving;
-	Animation* animation; // Referencia a la animación mostrada
-};
+class Enemy : public EnemyBase 
+{ 
+public: 
+	Enemy(float x, float y, Game* game); 
+	void update() override; 
+}; 
