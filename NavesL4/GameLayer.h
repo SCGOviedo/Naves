@@ -3,6 +3,7 @@
 #include "Layer.h"
 #include "Player.h"
 #include "Background.h"
+#include "Coin.h"
 
 #include "Enemy.h"
 #include "EnemyBase.h"
@@ -34,6 +35,7 @@ public:
 	Actor* backgroundLives;
 	list<EnemyBase*> enemies;
 	list<Projectile*> projectiles;
+	list<Coin*> monedas;
 
 	bool controlShoot = false;
 	int controlMoveY = 0;

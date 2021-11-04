@@ -66,6 +66,8 @@
     <ClCompile Include="Audio.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="Coin.cpp">
+      <Filter>Archivos de origen\actores</Filter>
     <ClCompile Include="Enemy.cpp">
       <Filter>Archivos de origen\actores\Enemies</Filter>
     </ClCompile>
@@ -106,15 +108,5 @@
     </ClInclude>
     <ClInclude Include="Audio.h">
       <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyBase.h">
-      <Filter>Archivos de encabezado\actores\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Archivos de encabezado\actores\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyNuevo.h">
-      <Filter>Archivos de encabezado\actores\Enemies</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
